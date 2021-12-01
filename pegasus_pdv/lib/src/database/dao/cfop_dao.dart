@@ -73,7 +73,8 @@ class CfopDao extends DatabaseAccessor<AppDatabase> with _$CfopDaoMixin {
 
   Future<int> inserir(Cfop pObjeto) {
     return transaction(() async {
-      final idInserido = await into(cfops).insert(pObjeto);
+      var cfop = pObjeto.copyWith(atualizadoEm: DateTime.now().toUtc());
+      final idInserido = await into(cfops).insert(cfop);
       return idInserido;
     });
   }
