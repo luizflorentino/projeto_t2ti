@@ -78,10 +78,10 @@ public class CfopController {
 	}
     }
 
-    @GetMapping("/{id}")
-    public Cfop consultarObjeto(@PathVariable Integer id) {
+    @GetMapping("/{codigo}")
+    public Cfop consultarObjeto(@PathVariable Integer codigo) {
 	try {
-	    return service.consultarObjeto(id);
+	    return service.consultarObjetoFiltro("CODIGO = '" + codigo + "'");
 	} catch (NoSuchElementException e) {
 	    throw new RecursoNaoEncontradoException("Registro não localizado [Consultar Objeto Cfop].");
 	} catch (Exception e) {
